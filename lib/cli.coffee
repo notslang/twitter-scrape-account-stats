@@ -10,9 +10,16 @@ argparser = new ArgumentParser(
 
 group = argparser.addMutuallyExclusiveGroup(required: true)
 group.addArgument(
+  ['--id']
+  type: 'string'
+  help: 'The userId of the account to scrape.'
+  dest: 'userId'
+)
+group.addArgument(
   ['--username', '-u']
   type: 'string'
-  help: 'Username of the account to scrape.'
+  help: 'Username of the account to scrape.  Within Twitter, this is called the
+  "screen_name".'
 )
 
 argv = argparser.parseArgs()
