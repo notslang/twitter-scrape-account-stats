@@ -1,6 +1,6 @@
 {
   "name": "twitter-scrape-account-stats",
-  "description": "scrape public Instagram data w/out API access",
+  "description": "scrape public Twitter data w/out API access",
   "version": "0.0.0",
   "author": "Sean Lang <slang800@gmail.com>",
   "bin": {
@@ -26,7 +26,7 @@
     "analytics",
     "followers",
     "following",
-    "instagram",
+    "twitter",
     "private",
     "scrape",
     "social",
