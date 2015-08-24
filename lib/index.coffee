@@ -30,13 +30,13 @@ getAccountStats = ({username, userId}) ->
   ).then(($) ->
     return {
       description: $('.bio.profile-field').text()
-      followers: getStatInt($, 'follower_stats')
-      following: getStatInt($, 'following_stats')
+      followers: getStatInt($, 'following_stats')
+      following: getStatInt($, 'follower_stats')
       isVerified: $('.Icon--verified').length > 0
       name: $('.ProfileCard-avatarLink').attr('title')
+      posts: getStatInt($, 'tweet_stats')
       userId: data['user_id']
       username: data['screen_name']
-      posts: getStatInt($, 'tweet_stats')
     }
   )
 
