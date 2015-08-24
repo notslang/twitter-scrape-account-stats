@@ -1,8 +1,15 @@
 request = require 'request-promise'
 cheerio = require 'cheerio'
 
+STAT_NAME_MAP =
+  followers: 'following_stats'
+  following: 'follower_stats'
+  posts: 'tweet_stats'
+
 getStatInt = ($, statName) ->
   stat = $("[data-element-term=\"#{statName}\"]").attr('title')
+  if not stat?
+    throw new Error("couldn't get #{statName}")
   parseInt(stat.replace(/[^0-9]/g, ''))
 
 getAccountStats = ({username, userId}) ->
@@ -28,16 +35,21 @@ getAccountStats = ({username, userId}) ->
     data = JSON.parse(resp)
     cheerio.load(data.html)
   ).then(($) ->
-    return {
+    res = {
       description: $('.bio.profile-field').text()
-      followers: getStatInt($, 'following_stats')
-      following: getStatInt($, 'follower_stats')
       isVerified: $('.Icon--verified').length > 0
       name: $('.ProfileCard-avatarLink').attr('title')
-      posts: getStatInt($, 'tweet_stats')
       userId: data['user_id']
       username: data['screen_name']
     }
+
+    for field, statName of STAT_NAME_MAP
+      try
+        res[field] = getStatInt($, statName)
+      catch e
+        throw new Error("Couldn't get #{field} stat for #{res.username}")
+
+    return res
   )
 
 module.exports = {getAccountStats}
