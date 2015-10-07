@@ -2,14 +2,21 @@ request = require 'request-promise'
 cheerio = require 'cheerio'
 
 STAT_NAME_MAP =
-  followers: 'following_stats'
-  following: 'follower_stats'
+  following: 'following_stats'
+  followers: 'follower_stats'
   posts: 'tweet_stats'
+
+STAT_TITLE_RE =
+  'following_stats': /^[0-9,]+ Following$/
+  'follower_stats': /^[0-9,]+ Followers$/
+  'tweet_stats': /^[0-9,]+ Tweets$/
 
 getStatInt = ($, statName) ->
   stat = $("[data-element-term=\"#{statName}\"]").attr('title')
   if not stat?
     throw new Error("couldn't get #{statName}")
+  if not STAT_TITLE_RE[statName].test(stat)
+    throw new Error('unexpected format in title attribute')
   parseInt(stat.replace(/[^0-9]/g, ''))
 
 getAccountStats = ({username, userId}) ->
