@@ -46,6 +46,7 @@ getAccountStats = ({username, userId}) ->
       description: $('.bio.profile-field').text()
       isVerified: $('.Icon--verified').length > 0
       name: $('.ProfileCard-avatarLink').attr('title')
+      photo: $('.ProfileCard-avatarLink').attr('href')
       userId: data['user_id']
       username: data['screen_name']
     }
