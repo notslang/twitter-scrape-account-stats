@@ -1,4 +1,4 @@
-# Twitter Scrape Account Stats
+# Twitter Account Stats
 [![Build Status](http://img.shields.io/travis/slang800/twitter-scrape-account-stats.svg?style=flat-square)](https://travis-ci.org/slang800/twitter-scrape-account-stats) [![NPM version](http://img.shields.io/npm/v/twitter-scrape-account-stats.svg?style=flat-square)](https://www.npmjs.org/package/twitter-scrape-account-stats) [![NPM license](http://img.shields.io/npm/l/twitter-scrape-account-stats.svg?style=flat-square)](https://www.npmjs.org/package/twitter-scrape-account-stats)
 
 A tool for scraping public data from Twitter, without needing to get permission from Twitter. It scrapes the following fields:
@@ -10,6 +10,7 @@ A tool for scraping public data from Twitter, without needing to get permission 
 - posts
 - userId
 - username
+- photo
 
 See `lib/response.schema.json` for further details.
 
