@@ -26,6 +26,9 @@
     },
     "posts": {
       "type": "integer"
+    },
+    "photo": {
+      "type": "string"
     }
   },
   "additionalProperties": false,
@@ -37,6 +40,7 @@
     "name",
     "posts",
     "userId",
-    "username"
+    "username",
+    "photo"
   ]
 }
